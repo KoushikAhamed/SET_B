@@ -1,7 +1,42 @@
 <?php
 session_start();
-if(isset($_SESSION['login_user'])){
+error_reporting(0);
+if(isset($_SESSION['login_user'])) 
+{
 	$id=$_SESSION['login_user'];
+	
+	$servername ="localhost";
+	$username 	="root";
+	$password 	="";
+	$dbname 	="setb";
+	
+	
+	$id 	=$_POST['id'];
+	$pass	=$_POST['pass'];
+	
+	$conn2 = mysqli_connect($servername, $username, $password, $dbname);
+	
+	if(!$conn2){
+		die("Connection Error!".mysqli_connect_error());
+	}
+	$sql = "select user_type from user where id='$id'" ;
+	
+	$result1=mysqli_query($conn2, $sql );	
+	
+    $arr=mysqli_fetch_assoc($result1);
+	
+	if($arr2['user_type']=="admin" ){
+	header("location: admin_home.php");
+
+	}
+else
+{
+ header("location: user_home.php");
+}
+mysqli_close($conn2);
+ }
+
+
  if(isset($_POST['submit'])){
     $id=$_POST['id'];
 	$pass=$_POST['pass'];
@@ -42,7 +77,7 @@ $sql = "select id from user where pass='$pass' and id='$id'" ;
 	}
 	mysqli_close($conn);
 	
- }
+ 
 }
 ?>
 
