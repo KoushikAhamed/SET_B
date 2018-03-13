@@ -1,5 +1,5 @@
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	
  if(isset($_POST['submit'])){
     $id=$_POST['id'];
 	$pass=$_POST['pass'];
@@ -10,8 +10,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = "root";
     $password = "";
 	$database="setb";
+
 $conn = mysqli_connect($servername, $username, $password,$database);
-// Check connection
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
@@ -22,9 +23,11 @@ if (mysqli_query($conn, $sql)) {
 } else {
     echo "Error creating database: " . mysqli_error($conn);
 }
-mysqli_close($conn);	
+
+mysqli_close($conn);
+	
  }
-}
+
 ?>
 <center>
 <form action="#" method="POST">
@@ -42,7 +45,7 @@ mysqli_close($conn);
 					<input type="radio" name="typeofuser" value="admin"/>Admin
 					<hr/>
 					<input type="submit" name="submit" value="Sign Up">
-					<a href="login.html">Sign In</a>
+					<a href="login.php">Sign In</a>
 				</fieldset>
 			</td>
 		</tr>                                
